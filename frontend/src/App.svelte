@@ -81,7 +81,7 @@
                     <span>Modified: {dayjs(currentImage?.fileStat?.mtime).format('YYYY-MM-DD HH:mm:ss')}</span>
                     <span>Accessed: {dayjs(currentImage?.fileStat?.atime).format('YYYY-MM-DD HH:mm:ss')}</span>
                     <span>Size: {currentImage?.fileStat?.sizeMb} Mb</span>
-                    <span>{imageCount + 1} / {Object.keys(imageData).length + 1}</span>
+                    <span>{imageCount + 1} / {Object.keys(imageData).length}</span>
 
                     <span class="header">Folders:</span>
                     <span>y: Sort by year</span>

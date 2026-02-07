@@ -62,7 +62,7 @@ app.get('/moveImage/:md5/:folderName', (req, res) => {
     let response = {};
     let image = {};
 
-    if (!fs.existsSync('./sorted/${folder}/')) {
+    if (!fs.existsSync(`./sorted/${folder}/`)) {
         try {
             fs.mkdirSync('./sorted/' + req.params.folderName);
             response = { result: 'success', message: `${req.params.folderName} created!` };
@@ -105,7 +105,9 @@ function listFolders() {
 function listImages() {
     fileList = {};
     count = 0;
-    files = fs.readdirSync('./unsorted').filter((file) => ['.jpg', '.jpeg', '.png', '.bmp'].includes(path.extname(file).toLowerCase()));
+    files = fs.readdirSync('./unsorted').filter((file) => {
+        return ['.jpg', '.jpeg', '.png', '.bmp', '.svg'].includes(path.extname(file).toLowerCase());
+    });
 
     files.forEach((file) => {
         count++;
