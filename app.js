@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const crypto = require('crypto');
 const cors = require('cors');
-
+var path = require('path');
 const app = express();
 
 app.use(cors());
@@ -105,9 +105,9 @@ function listFolders() {
 function listImages() {
     fileList = {};
     count = 0;
-    files = fs.readdirSync('./unsorted');
+    files = fs.readdirSync('./unsorted').filter((file) => ['.jpg', '.jpeg', '.png', '.bmp'].includes(path.extname(file).toLowerCase()));
+
     files.forEach((file) => {
-        //filter directories or jpg / png / bmp ...
         count++;
         fullPath = __dirname + '/unsorted/' + file;
         md5 = md5sum(fullPath);
